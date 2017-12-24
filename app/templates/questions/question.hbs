@@ -1,13 +1,15 @@
-<h1>Question {{questionNumber}}/{{questionsCount}}</h1>
+{{#liquid-bind question use="toLeft" as |currentQuestion|}}
+  <h1>Question {{questionNumber}}/{{questionsCount}}</h1>
 
-<h2>{{question.text}}</h2>
+  <h2>{{currentQuestion.text}}</h2>
 
-{{#if nextQuestion}}
-  <button {{action (route-action "goToNextQuestion")}}>
-    Next
-  </button>
-{{else}}
-  <button {{action (route-action "goToAnagram")}}>
-    Finish
-  </button>
-{{/if}}
+  {{#if nextQuestion}}
+    <button {{action (route-action "goToNextQuestion")}}>
+      Next
+    </button>
+  {{else}}
+    <button {{action (route-action "goToAnagram")}}>
+      Finish
+    </button>
+  {{/if}}
+{{/liquid-bind}}

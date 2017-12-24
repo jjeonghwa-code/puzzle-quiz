@@ -18,7 +18,6 @@ export default Ember.Route.extend({
   afterModel(model) {
     this._super(...arguments);
 
-    // TODO: #finish re-enable this.
-    // this.transitionTo('questions.question', 1);
+    this.transitionTo('questions.question', 1);
   },
 });
