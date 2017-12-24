@@ -1,0 +1,11 @@
+<h2>{{question.text}}</h2>
+
+{{#if nextQuestion}}
+  <button {{action (route-action "goToNextQuestion")}}>
+    Continue
+  </button>
+{{else}}
+  <button {{action (route-action "goToFinalStage")}}>
+    Finish
+  </button>
+{{/if}}
