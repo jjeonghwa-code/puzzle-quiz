@@ -1,11 +1,13 @@
+<h1>Question {{questionNumber}}/{{questionsCount}}</h1>
+
 <h2>{{question.text}}</h2>
 
 {{#if nextQuestion}}
   <button {{action (route-action "goToNextQuestion")}}>
-    Continue
+    Next
   </button>
 {{else}}
-  <button {{action (route-action "goToFinalStage")}}>
+  <button {{action (route-action "goToAnagram")}}>
     Finish
   </button>
 {{/if}}

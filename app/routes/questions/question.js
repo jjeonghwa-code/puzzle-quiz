@@ -2,24 +2,21 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   model({ questionNumber }) {
+    questionNumber = parseInt(questionNumber);
     let questions = this.modelFor('questions');
 
-    let question = questions.findBy('number', questionNumber);
-    let nextQuestion = questions.findBy('number', parseInt(questionNumber) + 1 + '');
-
     return {
-      question,
-      nextQuestion,
+      questionNumber,
+      questionsCount: questions.length,
+      question: questions.findBy('number', questionNumber),
+      nextQuestion: questions.findBy('number', questionNumber + 1),
     };
   },
 
-  setupController(controller, { question, nextQuestion }) {
+  setupController(controller, model) {
     this._super(...arguments);
 
-    controller.setProperties({
-      question,
-      nextQuestion,
-    });
+    controller.setProperties(model);
   },
 
   actions: {
@@ -27,8 +24,8 @@ export default Ember.Route.extend({
       this.transitionTo('questions.question', this.get('controller.nextQuestion.number'));
     },
 
-    goToFinalStage() {
-      // this.transitionTo('question.');
+    goToAnagram() {
+      this.transitionTo('anagram');
     },
   }
 });

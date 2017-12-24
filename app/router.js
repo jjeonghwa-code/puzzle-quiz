@@ -9,8 +9,9 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('welcome');
   this.route('questions', function() {
-    this.route('question', { path: 'questions/:questionNumber' });
+    this.route('question', { path: ':questionNumber' });
   });
+  this.route('anagram');
 });
 
 export default Router;
