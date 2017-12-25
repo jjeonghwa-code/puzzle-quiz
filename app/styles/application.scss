@@ -1,0 +1,21 @@
+html {
+  font-family: "Poppins";
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  body {
+    padding: 2rem;
+  }
+
+  button {
+    float: right;
+    background: none;
+    border: 1px solid #666;
+    border-radius: 0.3rem;
+    padding: 0.3rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

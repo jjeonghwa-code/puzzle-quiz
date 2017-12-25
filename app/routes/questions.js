@@ -15,7 +15,7 @@ export default Ember.Route.extend({
     ];
   },
 
-  afterModel(model) {
+  afterModel() {
     this._super(...arguments);
 
     this.transitionTo('questions.question', 1);
