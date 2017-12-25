@@ -23,6 +23,10 @@ export default Ember.Component.extend({
   actions: {
     characterPressed(key) {
       let { currentAnswer, correctAnswer } = this.getProperties('currentAnswer', 'correctAnswer');
+      if (currentAnswer.length >= correctAnswer.length) {
+        return;
+      }
+
       currentAnswer += key;
 
       // Add non-editable characters to the end of the answer
