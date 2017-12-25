@@ -16,8 +16,7 @@ export default Ember.Component.extend({
       let letter = currentAnswerLetters[index] || '';
       let isEditable = true;
 
-      const nonEditableChars = ' -';
-      if (nonEditableChars.indexOf(correctAnswerLetter) > -1) {
+      if (!this.isEditableChar(correctAnswerLetter)) {
         letter = correctAnswerLetter;
         isEditable = false;
       }
@@ -29,9 +28,39 @@ export default Ember.Component.extend({
     });
   }).readOnly(),
 
+  isEditableChar(char) {
+    const nonEditableChars = ' -';
+    return nonEditableChars.indexOf(char) === -1;
+  },
+
   actions: {
-    keyPressed(key) {
-      this.set('currentAnswer', this.get('currentAnswer') + key);
+    characterPressed(key) {
+      let { currentAnswer, correctAnswer } = this.getProperties('currentAnswer', 'correctAnswer');
+      currentAnswer += key;
+
+      // Add non-editable characters to the end of the answer
+      // so the next operation will be in the right place.
+      let nextCorrectChar;
+      while (currentAnswer.length <= correctAnswer.length &&
+        !this.isEditableChar(nextCorrectChar = correctAnswer[currentAnswer.length])) {
+        currentAnswer += nextCorrectChar;
+      }
+
+      this.set('currentAnswer', currentAnswer);
+    },
+
+    deleteCharacter() {
+      let { currentAnswer, correctAnswer } = this.getProperties('currentAnswer', 'correctAnswer');
+      currentAnswer = currentAnswer.slice(0, -1);
+
+      // Remove non-editable characters from the end of the answer
+      // so the next operation will be in the right place.
+      let nextCorrectChar;
+      while (!this.isEditableChar(correctAnswer[currentAnswer.length])) {
+        currentAnswer = currentAnswer.slice(0, -1);
+      }
+
+      this.set('currentAnswer', currentAnswer);
     },
   }
 });

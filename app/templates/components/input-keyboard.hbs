@@ -1,9 +1,9 @@
 {{#each letterRows as |letterRow|}}
   {{#display-letter-container as |displayLetterContainer|}}
-    {{#each letterRow as |letter|}}
+    {{#each letterRow as |letterInfo|}}
       {{displayLetterContainer.letter
-        letter=letter
-        click=(action onKeyPressed letter)
+        letter=letterInfo.letter
+        click=(action "keyPressed" letterInfo)
       }}
     {{/each}}
   {{/display-letter-container}}
