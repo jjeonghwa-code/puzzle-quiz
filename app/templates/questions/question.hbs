@@ -1,12 +1,19 @@
 {{#liquid-bind question use="toLeft" as |currentQuestion|}}
   <h2>Question {{questionNumber}}/{{questionsCount}}</h2>
 
-  <h3>{{currentQuestion.text}}</h3>
+  {{#liquid-unless isAnswerCorrect}}
+    <h3>{{currentQuestion.text}}</h3>
+  {{/liquid-unless}}
 
-  {{#liquid-unless hasCorrectAnswer}}
+  {{answer-display
+    currentAnswer=currentAnswer
+    correctAnswer=currentQuestion.answer
+  }}
+
+  {{#liquid-unless isAnswerCorrect}}
     {{answer-input
       correctAnswer=currentQuestion.answer
-      onIsAnswerCorrectChanged=(action (mut hasCorrectAnswer))
+      onAnswerChanged=(action (mut currentAnswer))
     }}
   {{else}}
     {{#if nextQuestion}}

@@ -1,0 +1,8 @@
+{{#display-letter-container as |displayLetterContainer|}}
+  {{#each currentAnswerLetterInfos as |letterInfo|}}
+    {{displayLetterContainer.letter
+      letter=letterInfo.letter
+      showBackground=letterInfo.isEditable
+    }}
+  {{/each}}
+{{/display-letter-container}}

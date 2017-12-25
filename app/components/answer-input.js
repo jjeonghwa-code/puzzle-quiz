@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import isEditableChar from 'puzzle-quiz/utils/is-editable-char';
 
 export default Ember.Component.extend({
   correctAnswer: null,
@@ -11,40 +12,13 @@ export default Ember.Component.extend({
     },
 
     set(key, value) {
-      let correctAnswer = this.getWithDefault('correctAnswer', '').toLowerCase();
-      this.get('onIsAnswerCorrectChanged')(correctAnswer === value);
+      this.get('onAnswerChanged')(value);
 
       return value;
     }
   }),
 
-  currentAnswerLetterInfos: Ember.computed('correctAnswer', 'currentAnswer', function() {
-    let correctAnswer = this.getWithDefault('correctAnswer', '');
-    let currentAnswer = this.getWithDefault('currentAnswer', '');
-
-    let correctAnswerLetters = [ ...correctAnswer ];
-    let currentAnswerLetters = [ ...currentAnswer ];
-
-    return correctAnswerLetters.map((correctAnswerLetter, index) => {
-      let letter = currentAnswerLetters[index] || '';
-      let isEditable = true;
-
-      if (!this.isEditableChar(correctAnswerLetter)) {
-        letter = correctAnswerLetter;
-        isEditable = false;
-      }
-
-      return {
-        letter,
-        isEditable,
-      }
-    });
-  }).readOnly(),
-
-  isEditableChar(char) {
-    const nonEditableChars = ' -';
-    return nonEditableChars.indexOf(char) === -1;
-  },
+  isEditableChar,
 
   actions: {
     characterPressed(key) {

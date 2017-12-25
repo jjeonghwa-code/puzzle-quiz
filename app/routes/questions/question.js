@@ -6,10 +6,11 @@ export default Ember.Route.extend({
     let questions = this.modelFor('questions');
 
     return {
-      questionNumber,
-      questionsCount: questions.length,
       question: questions.findBy('number', questionNumber),
       nextQuestion: questions.findBy('number', questionNumber + 1) || null,
+      questionNumber,
+      questionsCount: questions.length,
+      currentAnswer: '',
     };
   },
 

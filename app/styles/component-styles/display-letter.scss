@@ -1,7 +1,9 @@
+$size: 2.4rem;
+
 & {
-  width: 2.4rem;
-  height: 2.4rem;
-  line-height: 2.4rem;
+  width: $size;
+  height: $size;
+  line-height: $size;
   text-align: center;
   background-color: #eee;
   border-radius: 0.3rem;
