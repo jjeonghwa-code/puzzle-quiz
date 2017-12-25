@@ -8,11 +8,19 @@ $size: 2.4rem;
   background-color: #eee;
   border-radius: 0.3rem;
 
-  & + & {
-    margin-left: 0.4rem;
+  &.success {
+    background-color: #afa;
+  }
+
+  &.error {
+    background-color: #faa;
   }
 
   &.no-background {
     background: none;
+  }
+
+  & + & {
+    margin-left: 0.4rem;
   }
 }

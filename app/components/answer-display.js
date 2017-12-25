@@ -6,6 +6,8 @@ export default Ember.Component.extend({
 
   correctAnswer: null,
 
+  isAnswerCorrect: false,
+
   currentAnswerLetterInfos: Ember.computed('correctAnswer', 'currentAnswer', function() {
     let correctAnswer = this.getWithDefault('correctAnswer', '');
     let currentAnswer = this.getWithDefault('currentAnswer', '');
@@ -27,6 +29,18 @@ export default Ember.Component.extend({
         isEditable,
       }
     });
+  }).readOnly(),
+
+  status: Ember.computed('isAnswerCorrect', 'currentAnswer', 'correctAnswer', function() {
+    if (this.get('isAnswerCorrect')) {
+      return 'success';
+    }
+
+    if (this.get('currentAnswer.length') === this.get('correctAnswer.length')) {
+      return 'error';
+    }
+
+    return null;
   }).readOnly(),
 
   isEditableChar,
