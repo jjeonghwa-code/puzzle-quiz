@@ -1,11 +1,14 @@
 import Ember from 'ember';
 
-export default Ember.Controller.extend({
-  // These are set by the route.
+export default Ember.Component.extend({
   question: null,
+
   nextQuestion: null,
+
   questionNumber: null,
+
   questionsCount: null,
+
   currentAnswer: null,
 
   isAnswerCorrect: Ember.computed('question.answer', 'currentAnswer', function() {

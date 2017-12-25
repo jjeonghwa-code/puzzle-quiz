@@ -1,29 +1,9 @@
 {{#liquid-bind question use="toLeft" as |currentQuestion|}}
-  <h2>Question {{questionNumber}}/{{questionsCount}}</h2>
-
-  {{#liquid-unless isAnswerCorrect}}
-    <h3>{{currentQuestion.text}}</h3>
-  {{/liquid-unless}}
-
-  {{answer-display
+  {{question-page
+    question=currentQuestion
+    nextQuestion=nextQuestion
+    questionNumber=questionNumber
+    questionsCount=questionsCount
     currentAnswer=currentAnswer
-    correctAnswer=currentQuestion.answer
   }}
-
-  {{#liquid-unless isAnswerCorrect}}
-    {{answer-input
-      correctAnswer=currentQuestion.answer
-      onAnswerChanged=(action (mut currentAnswer))
-    }}
-  {{else}}
-    {{#if nextQuestion}}
-      <button {{action (route-action "goToNextQuestion")}}>
-        Next
-      </button>
-    {{else}}
-      <button {{action (route-action "goToAnagram")}}>
-        Finish
-      </button>
-    {{/if}}
-  {{/liquid-unless}}
 {{/liquid-bind}}
