@@ -3,7 +3,20 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   correctAnswer: null,
 
-  currentAnswer: '',
+  onIsAnswerCorrectChanged() {},
+
+  currentAnswer: Ember.computed({
+    get() {
+      return '';
+    },
+
+    set(key, value) {
+      let correctAnswer = this.getWithDefault('correctAnswer', '').toLowerCase();
+      this.get('onIsAnswerCorrectChanged')(correctAnswer === value);
+
+      return value;
+    }
+  }),
 
   currentAnswerLetterInfos: Ember.computed('correctAnswer', 'currentAnswer', function() {
     let correctAnswer = this.getWithDefault('correctAnswer', '');

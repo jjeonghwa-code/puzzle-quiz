@@ -3,7 +3,12 @@
 
   <h3>{{currentQuestion.text}}</h3>
 
-  {{#liquid-if hasCorrectAnswer}}
+  {{#liquid-unless hasCorrectAnswer}}
+    {{answer-input
+      correctAnswer=currentQuestion.answer
+      onIsAnswerCorrectChanged=(action (mut hasCorrectAnswer))
+    }}
+  {{else}}
     {{#if nextQuestion}}
       <button {{action (route-action "goToNextQuestion")}}>
         Next
@@ -13,10 +18,5 @@
         Finish
       </button>
     {{/if}}
-  {{else}}
-    {{answer-input
-      correctAnswer=currentQuestion.answer
-      onAnswerUpdated=(action (mut hasCorrectAnswer))
-    }}
-  {{/liquid-if}}
+  {{/liquid-unless}}
 {{/liquid-bind}}

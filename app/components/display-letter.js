@@ -1,9 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNameBindings: ['isEditable::blank'],
+  classNameBindings: [ 'showBackground::no-background' ],
 
   letter: null,
 
-  isEditable: true,
+  showBackground: true,
 });
