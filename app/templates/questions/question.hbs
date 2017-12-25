@@ -1,15 +1,22 @@
 {{#liquid-bind question use="toLeft" as |currentQuestion|}}
-  <h1>Question {{questionNumber}}/{{questionsCount}}</h1>
+  <h2>Question {{questionNumber}}/{{questionsCount}}</h2>
 
-  <h2>{{currentQuestion.text}}</h2>
+  <h3>{{currentQuestion.text}}</h3>
 
-  {{#if nextQuestion}}
-    <button {{action (route-action "goToNextQuestion")}}>
-      Next
-    </button>
+  {{#liquid-if hasCorrectAnswer}}
+    {{#if nextQuestion}}
+      <button {{action (route-action "goToNextQuestion")}}>
+        Next
+      </button>
+    {{else}}
+      <button {{action (route-action "goToAnagram")}}>
+        Finish
+      </button>
+    {{/if}}
   {{else}}
-    <button {{action (route-action "goToAnagram")}}>
-      Finish
-    </button>
-  {{/if}}
+    {{answer-input
+      correctAnswer=currentQuestion.answer
+      onAnswerUpdated=(action (mut hasCorrectAnswer))
+    }}
+  {{/liquid-if}}
 {{/liquid-bind}}

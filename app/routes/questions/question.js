@@ -9,14 +9,16 @@ export default Ember.Route.extend({
       questionNumber,
       questionsCount: questions.length,
       question: questions.findBy('number', questionNumber),
-      nextQuestion: questions.findBy('number', questionNumber + 1),
+      nextQuestion: questions.findBy('number', questionNumber + 1) || null,
     };
   },
 
   setupController(controller, model) {
     this._super(...arguments);
 
-    controller.setProperties(model);
+    controller.setProperties(Ember.merge({
+      hasCorrectAnswer: false,
+    }, model));
   },
 
   actions: {

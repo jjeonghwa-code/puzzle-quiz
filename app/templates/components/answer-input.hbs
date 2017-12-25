@@ -1,0 +1,13 @@
+{{#display-letter-container as |displayLetterContainer|}}
+  {{#each currentAnswerLetterInfos as |letterInfo|}}
+    {{displayLetterContainer.letter
+      letter=letterInfo.letter
+      isEditable=letterInfo.isEditable
+    }}
+  {{/each}}
+{{/display-letter-container}}
+
+{{input-keyboard
+  class="keyboard"
+  onKeyPressed=(action "keyPressed")
+}}

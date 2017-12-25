@@ -1,0 +1,10 @@
+{{#each letterRows as |letterRow|}}
+  {{#display-letter-container as |displayLetterContainer|}}
+    {{#each letterRow as |letter|}}
+      {{displayLetterContainer.letter
+        letter=letter
+        click=(action onKeyPressed letter)
+      }}
+    {{/each}}
+  {{/display-letter-container}}
+{{/each}}
