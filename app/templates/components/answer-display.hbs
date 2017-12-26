@@ -1,8 +1,8 @@
-{{#display-letter-container as |displayLetterContainer|}}
-  {{#each currentAnswerLetterInfos as |letterInfo|}}
-    {{displayLetterContainer.letter
-      letter=letterInfo.letter
-      showBackground=letterInfo.isEditable
+{{#display-letter-container}}
+  {{#each letterIndices as |index|}}
+    {{answer-display-letter
+      correctAnswerLetter=(get correctAnswerLetters index)
+      currentAnswerLetter=(get currentAnswerLetters index)
       status=status
     }}
   {{/each}}

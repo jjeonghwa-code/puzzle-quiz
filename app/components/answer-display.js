@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import isEditableChar from 'puzzle-quiz/utils/is-editable-char';
 
 export default Ember.Component.extend({
   currentAnswer: null,
@@ -8,27 +7,18 @@ export default Ember.Component.extend({
 
   isAnswerCorrect: false,
 
-  currentAnswerLetterInfos: Ember.computed('correctAnswer', 'currentAnswer', function() {
-    let correctAnswer = this.getWithDefault('correctAnswer', '');
-    let currentAnswer = this.getWithDefault('currentAnswer', '');
-
-    let correctAnswerLetters = [ ...correctAnswer ];
-    let currentAnswerLetters = [ ...currentAnswer ];
-
-    return correctAnswerLetters.map((correctAnswerLetter, index) => {
-      let letter = currentAnswerLetters[index] || '';
-      let isEditable = true;
-
-      if (!this.isEditableChar(correctAnswerLetter)) {
-        letter = correctAnswerLetter;
-        isEditable = false;
-      }
-
-      return {
-        letter,
-        isEditable,
-      }
+  letterIndices: Ember.computed('correctAnswer', function() {
+    return [ ...this.getWithDefault('correctAnswer', '') ].map((letter, index) => {
+      return index.toString();
     });
+  }).readOnly(),
+
+  correctAnswerLetters: Ember.computed('correctAnswer', function() {
+    return [ ...this.getWithDefault('correctAnswer', '') ];
+  }).readOnly(),
+
+  currentAnswerLetters: Ember.computed('currentAnswer', function() {
+    return [ ...this.getWithDefault('currentAnswer', '') ];
   }).readOnly(),
 
   status: Ember.computed('isAnswerCorrect', 'currentAnswer', 'correctAnswer', function() {
@@ -42,6 +32,4 @@ export default Ember.Component.extend({
 
     return null;
   }).readOnly(),
-
-  isEditableChar,
 });
