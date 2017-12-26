@@ -5,6 +5,8 @@ export default Ember.Component.extend({
 
   correctAnswer: null,
 
+  highlightedLetter: null,
+
   isAnswerCorrect: false,
 
   letterIndices: Ember.computed('correctAnswer', function() {
@@ -19,6 +21,16 @@ export default Ember.Component.extend({
 
   currentAnswerLetters: Ember.computed('currentAnswer', function() {
     return [ ...this.getWithDefault('currentAnswer', '') ];
+  }).readOnly(),
+
+  highlightedLetterIndex: Ember.computed('correctAnswer', 'highlightedLetter', function() {
+    let highlightedLetter = this.get('highlightedLetter');
+    if (Ember.isNone(highlightedLetter)) {
+      return null;
+    }
+
+    let correctAnswer = this.getWithDefault('correctAnswer', '').toLowerCase();
+    return correctAnswer.indexOf(highlightedLetter).toString();
   }).readOnly(),
 
   status: Ember.computed('isAnswerCorrect', 'currentAnswer', 'correctAnswer', function() {

@@ -9,6 +9,7 @@ export default Ember.Component.extend({
   ],
   classNameBindings: [
     'showBackground::no-background',
+    'highlighted:highlighted',
     'isSuccess:success',
     'isError:error'
   ],

@@ -8,6 +8,8 @@ export default Ember.Component.extend({
 
   currentAnswerLetter: null,
 
+  highlighted: false,
+
   status: null,
 
   isEditableChar,

@@ -28,5 +28,12 @@ html {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    outline: none;
+
+    &:active {
+      color: #333;
+      background-color: #eee;
+      border-color: #aaa;
+    }
   }
 }
