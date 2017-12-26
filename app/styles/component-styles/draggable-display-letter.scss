@@ -1,0 +1,11 @@
+& {
+  transition: all .25s;
+
+  &.is-dragging {
+    transition-duration: 0s;
+  }
+
+  &.is-dragging, &.is-dropping {
+    z-index: 10;
+  }
+}

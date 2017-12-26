@@ -1,0 +1,25 @@
+{{#liquid-unless isAnswerCorrect}}
+  <h2>Almost there!</h2>
+
+  <p>Rearrange the letters you've found in the previous rounds to make a word...</p>
+
+  {{anagram-input
+    letters=letters
+    onLettersChanged=(action (mut letters))
+  }}
+{{else}}
+  {{answer-display
+    currentAnswer=currentAnswer
+    correctAnswer=correctAnswer
+    isAnswerCorrect=isAnswerCorrect
+  }}
+
+  <p>
+    <strong>WELL DONE!</strong>
+    You've successfully completed the puzzle &#9786;
+  </p>
+
+  <button {{action onGoToPrize}}>
+    Claim prize
+  </button>
+{{/liquid-unless}}

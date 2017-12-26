@@ -12,6 +12,7 @@ Router.map(function() {
     this.route('question', { path: ':questionNumber' });
   });
   this.route('anagram');
+  this.route('prize');
 });
 
 export default Router;

@@ -4,8 +4,6 @@ import isEditableChar from 'puzzle-quiz/utils/is-editable-char';
 export default Ember.Component.extend({
   correctAnswer: null,
 
-  onIsAnswerCorrectChanged() {},
-
   currentAnswer: Ember.computed({
     get() {
       return '';

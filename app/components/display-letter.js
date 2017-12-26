@@ -1,12 +1,19 @@
 import Ember from 'ember';
+import layout from 'puzzle-quiz/templates/components/display-letter';
+import podNames from 'ember-component-css/pod-names';
 
 export default Ember.Component.extend({
-  classNames: [ 'animate-background' ],
+  classNames: [
+    podNames['display-letter'],
+    'animate-background'
+  ],
   classNameBindings: [
     'showBackground::no-background',
     'isSuccess:success',
     'isError:error'
   ],
+
+  layout,
 
   letter: null,
 
@@ -14,6 +21,6 @@ export default Ember.Component.extend({
 
   status: null,
 
-  isSuccess: Ember.computed.equal('status', 'success'),
-  isError: Ember.computed.equal('status', 'error'),
+  isSuccess: Ember.computed.equal('status', 'success').readOnly(),
+  isError: Ember.computed.equal('status', 'error').readOnly(),
 });

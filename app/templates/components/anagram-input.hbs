@@ -1,0 +1,17 @@
+{{#sortable-group
+  tagName="div"
+  direction="x"
+  onChange="lettersChanged"
+  as |group|
+}}
+  {{#display-letter-container}}
+    {{#each letters as |letter|}}
+      {{draggable-display-letter
+        tagName="span"
+        letter=letter
+        status=status
+        group=group
+      }}
+    {{/each}}
+  {{/display-letter-container}}
+{{/sortable-group}}
