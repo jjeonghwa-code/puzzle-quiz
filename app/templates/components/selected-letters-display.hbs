@@ -1,0 +1,7 @@
+{{#display-letter-container as |displayLetterContainer|}}
+  {{#each selectedLetters as |letter|}}
+    {{displayLetterContainer.letter
+      letter=letter
+    }}
+  {{/each}}
+{{/display-letter-container}}

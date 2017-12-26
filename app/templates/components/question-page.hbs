@@ -17,13 +17,7 @@
     onAnswerChanged=(action (mut currentAnswer))
   }}
 {{else}}
-  {{#if nextQuestion}}
-    <button {{action (route-action "goToNextQuestion")}}>
-      Next
-    </button>
-  {{else}}
-    <button {{action (route-action "goToAnagram")}}>
-      Finish
-    </button>
-  {{/if}}
+  <button {{action "completeQuestion"}}>
+    {{if nextQuestion "Next" "Finish"}}
+  </button>
 {{/liquid-unless}}

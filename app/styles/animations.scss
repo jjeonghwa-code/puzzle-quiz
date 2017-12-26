@@ -1,3 +1,7 @@
 .animate-background {
   transition: background-color 0.25s ease;
 }
+
+.animate-position {
+  transition: top 1s ease;
+}

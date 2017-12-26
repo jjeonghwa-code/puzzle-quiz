@@ -23,11 +23,14 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    goToNextQuestion() {
-      this.transitionTo('questions.question', this.get('controller.nextQuestion.number'));
-    },
+    goToNextStep() {
+      let nextQuestionNumber = this.get('controller.nextQuestion.number') || null;
 
-    goToAnagram() {
+      if (nextQuestionNumber) {
+        this.transitionTo('questions.question', nextQuestionNumber);
+        return;
+      }
+
       this.transitionTo('anagram');
     },
   }
