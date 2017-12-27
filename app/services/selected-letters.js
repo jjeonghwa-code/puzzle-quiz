@@ -9,4 +9,8 @@ export default Ember.Service.extend(Ember.Evented, {
     this.get('selectedLetters').pushObject(letter);
     this.trigger('letterAdded');
   },
+
+  clear() {
+    this.get('selectedLetters').clear();
+  },
 });

@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  selectedLetters: Ember.inject.service(),
+
   model() {
     return [
       {
@@ -34,6 +36,8 @@ export default Ember.Route.extend({
 
   afterModel() {
     this._super(...arguments);
+
+    this.get('selectedLetters').clear();
 
     this.transitionTo('questions.question', 1);
   },
