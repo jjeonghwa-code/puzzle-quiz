@@ -2,6 +2,8 @@
 
 {{#liquid-unless isAnswerCorrect}}
   <h3>{{question.text}}</h3>
+{{else}}
+  <h2>CORRECT!</h2>
 {{/liquid-unless}}
 
 {{answer-display
