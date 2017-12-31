@@ -1,10 +1,25 @@
 {{#display-letter-container}}
   {{#each letterIndices as |index|}}
-    {{answer-display-letter
+    {{#with (component "answer-display-letter"
       correctAnswerLetter=(get correctAnswerLetters index)
       currentAnswerLetter=(get currentAnswerLetters index)
-      highlighted=(eq index highlightedLetterIndex)
       status=status
-    }}
+    ) as |displayLetterComponent|}}
+      {{#if (eq index highlightedLetterIndex)}}
+        {{movable-component-target
+          name="answer-display-highlighted-letter"
+        }}
+
+        {{#movable-component
+          name="selected-letter"
+          sourceName="answer-display-highlighted-letter"
+          targetName="selected-letters-display"
+        }}
+          {{component displayLetterComponent highlighted=true}}
+        {{/movable-component}}
+      {{else}}
+        {{component displayLetterComponent}}
+      {{/if}}
+    {{/with}}
   {{/each}}
 {{/display-letter-container}}

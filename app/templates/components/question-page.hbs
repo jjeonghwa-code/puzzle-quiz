@@ -18,7 +18,7 @@
     onAnswerChanged=(action (mut currentAnswer))
   }}
 {{else}}
-  <button {{action "completeQuestion"}}>
+  <button {{action (perform completeQuestion)}}>
     {{if nextQuestion "Next" "Finish"}}
   </button>
 {{/liquid-unless}}

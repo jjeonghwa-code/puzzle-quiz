@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  selectedLettersService: Ember.inject.service('selected-letters'),
+
   model({ questionNumber }) {
     questionNumber = parseInt(questionNumber);
     let questions = this.modelFor('questions');

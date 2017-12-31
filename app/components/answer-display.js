@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  selectedLettersService: Ember.inject.service('selected-letters'),
+
   currentAnswer: null,
 
   correctAnswer: null,
