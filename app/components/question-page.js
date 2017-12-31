@@ -24,7 +24,9 @@ export default Ember.Component.extend({
   actions: {
     completeQuestion() {
       // Add the selected letter for this question to the results.
-      this.get('selectedLetters').addSelectedLetter(this.get('question.selectLetter'));
+      this.get('selectedLetters').addSelectedLetter(this.get('question.selectLetter'), {
+        flashSelectedLetters: Ember.isPresent(this.get('nextQuestion')),
+      });
 
       // Let the outside world handle whatever needs to happen next.
       this.get('onGoToNextQuestion')();
